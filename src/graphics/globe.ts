@@ -41,7 +41,7 @@ function createEquator(): THREE.Line<THREE.BufferGeometry, THREE.LineBasicMateri
         EARTH_RADIUS * 1.01, EARTH_RADIUS * 1.01,
         0, 2 * Math.PI,
         false,
-        0 // aRotation
+        0
     )
     const points = curve.getPoints(50)
     const geometry = new THREE.BufferGeometry().setFromPoints(points)
@@ -66,6 +66,8 @@ function createPrimeMeridian(): THREE.Line<THREE.BufferGeometry, THREE.LineBasic
     const geometry = new THREE.BufferGeometry().setFromPoints(points)
     const material = new THREE.LineBasicMaterial({ color: 0x00aa00 })
     const ellipse = new THREE.Line(geometry, material)
+
+    ellipse.rotateY(Math.PI / -2)
 
     return ellipse
 }

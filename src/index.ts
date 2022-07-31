@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import * as dat from 'dat.gui'
 import { ApsisArguments, Orbit } from './math/orbit'
-import { drawOrbit, drawOrbitGeometry } from './graphics/orbit'
+import { createOrbit } from './graphics/orbit'
 import { createGlobe } from './graphics/globe'
 import { EARTH_RADIUS } from './constants'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -21,7 +21,7 @@ function createScene() {
     const globe = createGlobe()
     scene.add(globe)
 
-    const apsides = new ApsisArguments(
+    const ISS = new ApsisArguments(
         420,
         412,
         51.6430,
@@ -30,14 +30,28 @@ function createScene() {
         0
     )
 
+    const zeroArgs = new ApsisArguments(
+        2000,
+        500,
+        0,
+        0,
+        0,
+        0
+    )
+
+    const apsides = ISS
+
     const gui = new dat.GUI()
-    gui.add(apsides, 'apoapsis', 100, 5 * EARTH_RADIUS, 10)
-    gui.add(apsides, 'periapsis', 100, 5 * EARTH_RADIUS, 10)
+    gui.add(apsides, 'apoapsis', 100, 3 * EARTH_RADIUS, 10)
+    gui.add(apsides, 'periapsis', 100, 3 * EARTH_RADIUS, 10)
     gui.add(apsides, 'inclination', 0, 90, 1)
+    gui.add(apsides, 'ascendingNode', 0, 360, 1)
     gui.add(apsides, 'argPeriapsis', 0, 360, 1)
 
-    const ellipse = drawOrbit(Orbit.fromApsisArguments(apsides))
-    let orbitJson = JSON.stringify(Orbit.fromApsisArguments(apsides))
+    let orbit = Orbit.fromApsisArguments(apsides)
+    let orbitJson = JSON.stringify(orbit)
+
+    const ellipse = createOrbit(orbit)
 
     scene.add(ellipse)
 
@@ -45,8 +59,11 @@ function createScene() {
         requestAnimationFrame(animate)
         controls.update()
 
-        ellipse.geometry = drawOrbitGeometry(Orbit.fromApsisArguments(apsides))
-        orbitJson = JSON.stringify(Orbit.fromApsisArguments(apsides))
+        orbit = Orbit.fromApsisArguments(apsides)
+
+        ellipse.clear()
+        ellipse.add(createOrbit(orbit))
+        orbitJson = JSON.stringify(orbit)
 
         renderer.render(scene, camera)
     }

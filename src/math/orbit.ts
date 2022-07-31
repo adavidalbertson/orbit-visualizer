@@ -40,6 +40,7 @@ export class Orbit {
     static fromApsides(apoapsis: number, periapsis: number, inclination: number, ascendingNode: number, argPeriapsis: number, trueAnomaly: number): Orbit {
         if (periapsis > apoapsis) {
             [apoapsis, periapsis] = [periapsis, apoapsis]
+            argPeriapsis = argPeriapsis + 180
         }
 
         const adjustedApoapsis = EARTH_RADIUS + apoapsis
