@@ -1,0 +1,33 @@
+{
+    "name": "orbits",
+    "version": "0.0.1",
+    "description": "Orbit visualizer",
+    "author": "",
+    "dependencies": {
+        "@types/dat.gui": "^0.7.7",
+        "@types/three": "^0.143.0",
+        "dat.gui": "^0.7.9",
+        "three": "^0.143.0"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.31.0",
+        "@typescript-eslint/parser": "^5.31.0",
+        "eslint": "^8.20.0",
+        "html-webpack-plugin": "^5.5.0",
+        "ts-loader": "^9.3.1",
+        "typescript": "^4.7.4",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.9.3",
+        "webpack-merge": "^5.8.0"
+    },
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack --config webpack.prod.js",
+        "start": "webpack serve --config webpack.dev.js"
+    },
+    "keywords": [],
+    "license": "ISC",
+    "type": "module"
+}
