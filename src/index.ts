@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 function createScene() {
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000)
-    camera.position.x = 5 * EARTH_RADIUS
+    camera.position.x = 3 * EARTH_RADIUS
 
     const renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
@@ -81,7 +81,7 @@ function createScene() {
 	info.style.zIndex = '1';
 	info.style.fontFamily = 'Monospace';
 	info.innerHTML = orbitJson;
-	document.body.appendChild( info );
+	// document.body.appendChild( info );
 
     return renderer.domElement
 }

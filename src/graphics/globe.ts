@@ -40,7 +40,7 @@ function createDirectionalLight(): THREE.DirectionalLight {
 function createEquator(): THREE.Line<THREE.BufferGeometry, THREE.LineBasicMaterial> {
     const curve = new THREE.EllipseCurve(
         0, 0,
-        EARTH_RADIUS * 1.01, EARTH_RADIUS * 1.01,
+        EARTH_RADIUS * 1.02, EARTH_RADIUS * 1.02,
         0, 2 * Math.PI,
         false,
         0
@@ -58,7 +58,7 @@ function createEquator(): THREE.Line<THREE.BufferGeometry, THREE.LineBasicMateri
 function createPrimeMeridian(): THREE.Line<THREE.BufferGeometry, THREE.LineBasicMaterial> {
     const curve = new THREE.EllipseCurve(
         0, 0,
-        EARTH_RADIUS * 1.01, EARTH_RADIUS * 1.01,
+        EARTH_RADIUS * 1.02, EARTH_RADIUS * 1.02,
         0, Math.PI,
         false,
         Math.PI / -2
