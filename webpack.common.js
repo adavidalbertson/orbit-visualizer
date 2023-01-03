@@ -14,8 +14,7 @@ export default {
     output: {
         clean: true,
         filename: 'bundle.js',
-        path: new URL('./dist', import.meta.url).pathname,
-        publicPath: '/public'
+        path: new URL('./dist', import.meta.url).pathname
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],

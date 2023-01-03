@@ -17,7 +17,7 @@ export function createGlobe(): THREE.Object3D {
 function createSphere(): THREE.Mesh {
     const loader = new THREE.TextureLoader();
     const geometry = new THREE.SphereGeometry(EARTH_RADIUS)
-    const material = new THREE.MeshPhongMaterial({map: loader.load('../public/2k_earth.jpg')})
+    const material = new THREE.MeshPhongMaterial({map: loader.load('2k_earth.jpg')})
     const sphere = new THREE.Mesh(geometry, material)
     sphere.castShadow = true
     sphere.receiveShadow = true
