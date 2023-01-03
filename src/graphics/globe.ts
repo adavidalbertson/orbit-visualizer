@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { EARTH_RADIUS } from '../constants'
+import { EARTH_RADIUS, greenLine, whiteLine } from '../constants'
 
 export function createGlobe(): THREE.Object3D {
     const globe = new THREE.Object3D()
@@ -15,11 +15,13 @@ export function createGlobe(): THREE.Object3D {
 }
 
 function createSphere(): THREE.Mesh {
+    const loader = new THREE.TextureLoader();
     const geometry = new THREE.SphereGeometry(EARTH_RADIUS)
-    const material = new THREE.MeshPhongMaterial({ color: 0x008dd })
+    const material = new THREE.MeshPhongMaterial({map: loader.load('../public/2k_earth.jpg')})
     const sphere = new THREE.Mesh(geometry, material)
     sphere.castShadow = true
     sphere.receiveShadow = true
+    sphere.rotateY(Math.PI)
     return sphere
 }
 
@@ -45,7 +47,7 @@ function createEquator(): THREE.Line<THREE.BufferGeometry, THREE.LineBasicMateri
     )
     const points = curve.getPoints(50)
     const geometry = new THREE.BufferGeometry().setFromPoints(points)
-    const material = new THREE.LineBasicMaterial({ color: 0x00aa00 })
+    const material = greenLine
     const ellipse = new THREE.Line(geometry, material)
 
     ellipse.rotateX(Math.PI / 2)
@@ -64,7 +66,7 @@ function createPrimeMeridian(): THREE.Line<THREE.BufferGeometry, THREE.LineBasic
 
     const points = curve.getPoints(50)
     const geometry = new THREE.BufferGeometry().setFromPoints(points)
-    const material = new THREE.LineBasicMaterial({ color: 0x00aa00 })
+    const material = greenLine
     const ellipse = new THREE.Line(geometry, material)
 
     ellipse.rotateY(Math.PI / -2)
@@ -73,7 +75,7 @@ function createPrimeMeridian(): THREE.Line<THREE.BufferGeometry, THREE.LineBasic
 }
 
 function createPoles(): THREE.Line<THREE.BufferGeometry, THREE.LineBasicMaterial> {
-    const material = new THREE.LineBasicMaterial({ color: 0xffffff })
+    const material = whiteLine
 
     const points = []
     points.push(new THREE.Vector3(0, -1.2 * EARTH_RADIUS, 0))

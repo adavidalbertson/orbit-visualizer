@@ -8,7 +8,7 @@ export default merge(common, {
         compress: true,
         port: 9000,
         static: {
-            directory: new URL('./public', import.meta.url).pathname,
+            directory: new URL('./public', import.meta.url).pathname
         },
     },
     mode: 'development',

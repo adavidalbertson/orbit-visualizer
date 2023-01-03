@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { EARTH_RADIUS } from "../constants";
+import { blueLine, EARTH_RADIUS, redLine, whiteLine } from "../constants";
 import { Orbit } from "../math/orbit";
 
 export function createOrbit(orbit: Orbit) {
@@ -15,7 +15,7 @@ function createOrbitLine(orbit: Orbit) {
     const orbitWithArg = new THREE.Object3D()
 
     const geometry = createOrbitGeometry(orbit)
-    const material = new THREE.LineBasicMaterial({ color: 0xffffff })
+    const material = whiteLine
 
     const line =  new THREE.Line(geometry, material)
 
@@ -63,7 +63,7 @@ export function createPointsOfInterest(orbit: Orbit) {
 }
 
 function createArgumentOfPeriapsis(orbit: Orbit) {
-    const material = new THREE.LineBasicMaterial({ color: 0xaa0000 })
+    const material = redLine
 
     const points = []
     points.push(new THREE.Spherical(orbit.periapsis + 0.1 * EARTH_RADIUS, Math.PI / 2, orbit.argPeriapsis))
@@ -74,7 +74,7 @@ function createArgumentOfPeriapsis(orbit: Orbit) {
 }
 
 function createAscendingNode(orbit: Orbit) {
-    const material = new THREE.LineBasicMaterial({ color: 0x0000aa })
+    const material = blueLine
 
     const points = []
     points.push(new THREE.Spherical(orbit.semimajorAxis, Math.PI / 2, orbit.ascendingNode))

@@ -31,10 +31,10 @@ function createScene() {
     )
 
     const zeroArgs = new ApsisArguments(
-        2000,
+        3000,
         500,
         0,
-        0,
+        90,
         0,
         0
     )
